@@ -24,6 +24,10 @@ for the implemented algorithms).
 
 --NeighborListEntry.h & NeighborListEntry.cpp: These files contain the list of neighbors that a node retains.
 
+--CFuzzyFunction.h & CFuzzyFunction.cpp: Fuzzification of factors(velocity factor, leadership factor, signal quality factor and energy factor), used for CH selection in the first level
+
+--Fuzzy_logic_algorithm.h & Fuzzy_logic_algorithm.cpp: Implementation of EAVC algorithm.
+
 --simple.ns_movements: Highway simulation network
 
 --city.ns_movements: Urban environment Simulation network.

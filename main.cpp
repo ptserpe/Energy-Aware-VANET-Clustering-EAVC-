@@ -162,10 +162,7 @@ int main(int argc, char *argv[]){
 	cout << "=================================================\n";
 
 
-	///TODO: decide the transmission radius and use this as a parameter too!!!! DONEEEEEEEEEEEEEEEE check this!
-	//>>>>>>>>>STAGE 4: Call the algorithm, Mobility-Based clustering in VANETs using Affinity Propagation
-	//APROVE Algorithm = Affinity PROpagation for VEhicular networks
-	/////////////////aproveCall(periodTimes, numberOfNodes, nodeMovements, transmission_radius);
+	Fuzzy_logic_aalgorithm(periodTimes, numberOfNodes, nodeMovements, transmission_radius);
 
 
 	return 0;

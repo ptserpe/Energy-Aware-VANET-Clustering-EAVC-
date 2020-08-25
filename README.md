@@ -24,7 +24,10 @@ for the implemented algorithms).
 
 --NeighborListEntry.h & NeighborListEntry.cpp: These files contain the list of neighbors that a node retains.
 
---simple.ns: Highway simulation network
+--simple.ns_movements: Highway simulation network
 
---city.ns: Urban environment Simulation network.
+--city.ns_movements: Urban environment Simulation network.
+
+--myscript.sh: In order to instantly call the compile and execution of my files.
+
 

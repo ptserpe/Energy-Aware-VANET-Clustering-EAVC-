@@ -202,6 +202,101 @@ void fuzzyLogicAlgorithm(int periodTimes, int numberOfNodes, Movement **movement
                 }
 
             }
+		//At the end of every period, print the neighbor list
+		for(i = 0; i < numberOfNodes; i++){
+			///cout << "NEIGHBOR LIST OF NODE " << i << endl;
+			///cout << "Clusterhead " << clusterheads[i] << endl;
+			//scans the list of the neighbor nodes
+			for(nListIt = neighborList_I[i].begin(); nListIt != neighborList_I[i].end(); nListIt++){
+				///cout << *nListIt;
+			}
+		}
+		
+		/***Code for comparisons***/
+		for(i = 0; i < numberOfNodes; i++){
+			for(listOfVariaClusters_It = listOfVariaClusters.begin(); listOfVariaClusters_It != listOfVariaClusters.end(); listOfVariaClusters_It++){
+				if(clusterheads[i] == *listOfVariaClusters_It){
+					break;
+				}
+			}
+			if(listOfVariaClusters_It == listOfVariaClusters.end()){
+				listOfVariaClusters.push_back(clusterheads[i]);
+			}
+			
+		}
+		
+		if(t>0){
+			for(listOfVariaClusters_It = listOfVariaClusters.begin(); listOfVariaClusters_It != listOfVariaClusters.end(); listOfVariaClusters_It++){
+				numberOfNodesInCluster.push_back( neighborList_I[*listOfVariaClusters_It].size() );
+			}
+			
+			for(numberOfNodesInCluster_It = numberOfNodesInCluster.begin(); numberOfNodesInCluster_It != numberOfNodesInCluster.end(); numberOfNodesInCluster_It++){
+				totalSizeOfCluster = totalSizeOfCluster + *numberOfNodesInCluster_It; 
+			}
+			
+			averageSizeOfCluster = totalSizeOfCluster / listOfVariaClusters.size();
+			sizeOfCluster[t] = averageSizeOfCluster;
+		}
+		
+// 		for(listOfVariaClusters_It = listOfVariaClusters.begin(); listOfVariaClusters_It != listOfVariaClusters.end(); listOfVariaClusters_It++){
+// 			cout << *listOfVariaClusters_It << " ";
+// 		}
+// 		cout << endl;
+		
+// 		for(numberOfNodesInCluster_It = numberOfNodesInCluster.begin(); numberOfNodesInCluster_It != numberOfNodesInCluster.end(); numberOfNodesInCluster_It++){
+// 			cout << *numberOfNodesInCluster_It << " ";
+// 		}
+// 		cout << endl;
+		
+		totalSizeOfCluster = 0;
+		numberOfClusters[t] = listOfVariaClusters.size();
+		listOfVariaClusters.clear();
+		numberOfNodesInCluster.clear();
+	}
+	
+	
+	/*************************COMPARISONS**********************************/
+	
+	/*Estimated Average number of messages*/
+	for(t=0; t<periodTimes; t++){
+		//cout << numberOfMessages[t] << " ";
+		totalNumberOfMessages = totalNumberOfMessages + numberOfMessages[t];
+		totalNumberOfClusters = totalNumberOfClusters + numberOfClusters[t];
+	}
+	
+	for(t=1; t<periodTimes; t++){
+		//cout << sizeOfCluster[t] << " ";
+		totalSizeOfCluster = totalSizeOfCluster + sizeOfCluster[t];
+	}
+	cout << endl;
+	
+	averageNumberOfMessages = (float) totalNumberOfMessages / periodTimes;
+	averageNumberOfClusters = (float) totalNumberOfClusters / periodTimes;
+	averageSizeOfCluster = (float) totalSizeOfCluster / (periodTimes-1);
+	cout << "Average number of messages per min: " << averageNumberOfMessages << endl;
+	cout << "Average number of clusters per min: " << averageNumberOfClusters << endl;
+	cout << "Average number of cluster size per min: " << averageSizeOfCluster << endl;
+	if(periodTimes % T_H == 0){
+		cout << "Average number of messages per " << T_H << " min: " << totalNumberOfMessages / (periodTimes / T_H) << endl;
+		cout << "Average number of clusters per " << T_H << " min: " << totalNumberOfClusters / (periodTimes / T_H) << endl;
+	}
+	else{
+		i = periodTimes % T_H;
+		for(j = 0; j<periodTimes % T_H; j++){
+			totalNumberOfMessages = totalNumberOfMessages - numberOfMessages[periodTimes -j -1];
+			totalNumberOfClusters = totalNumberOfClusters - numberOfClusters[periodTimes -j -1];
+		}
+		cout << "Average number of messages per " << T_H << " min: " << totalNumberOfMessages / (periodTimes / T_H) << endl;
+		cout << "Average number of clusters per " << T_H << " min: " << totalNumberOfClusters / (periodTimes / T_H) << endl;
+	}
+	
+}
+
+
+
+/*****************************************************************************************************************************************/
+/*****************************************************OTHER FUNCTIONS*********************************************************************/
+/*****************************************************************************************************************************************/
 
             //SECOND STEP - FUZZIFICATION AND FUZZY RULES
             //calculation of the rank
@@ -209,7 +304,7 @@ void fuzzyLogicAlgorithm(int periodTimes, int numberOfNodes, Movement **movement
                 //scans the list of its neighbors
                 for(nListIt = neighborList_I[i].begin(); nListIt != neighborList_I[i].end(); nListIt++){
 
-                    //Rank = calculateRank()
+                    Rank = calculateRank();
 
                 }
 

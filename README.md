@@ -7,7 +7,7 @@ To obtain the results of our algorithm we had to create a realistic environment 
 
 Files description:
 
---main.cc: which contains the call of the main function. During the execution of the program, it is
+--main.cpp: which contains the call of the main function. During the execution of the program, it is
 designed to accept at least 3 arguments with a certain order: (1) number of nodes that participate in
 the simulation, (2) the period of times that the simulation lasts and (3) the name of the file that con-
 tains the simulation details and has been produced with the TraceExporter (the SUMO’s extension
@@ -17,9 +17,14 @@ the period of times that the program runs as the second and the third parameter.
 name that declares the movement.”. In the end of the file, there is a call to the main function. Finally, this file sets the transmission radio of the
 nodes that participate in the simulation.
 
---movement.h & movement.cc: These 2 files implement the class “Movement”, which contains details read from the input simulation file that is declared by the user. Each node keeps its nodeID, its position (int x, int y) and its velocity (which is the total velocity on x and y axes and is not really necessary
+--Movement.h & Movement.cpp: These 2 files implement the class “Movement”, which contains details read from the input simulation file that is declared by the user. Each node keeps its nodeID, its position (int x, int y) and its velocity (which is the total velocity on x and y axes and is not really necessary
 for the implemented algorithms).
 
---HelloBeacon.h & HelloBeacon.cc: These files simulate the information that is transmitted from a node to another, when a Hello_Beacon message is transmitted form one node to its neighbors in order to inform them for his existence.
+--HelloBeaconMessage.h & HelloBeaconMessage.cpp: These files simulate the information that is transmitted from a node to another, when a Hello_Beacon message is transmitted form one node to its neighbors in order to inform them for his existence.
 
+--NeighborListEntry.h & NeighborListEntry.cpp: These files contain the list of neighbors that a node retains.
+
+--simple.ns: Highway simulation network
+
+--city.ns: Urban environment Simulation network.
 
